@@ -1,6 +1,6 @@
 import React from "react";
 import { createStore } from "redux";
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 
 const page3Data = {
   color: "",
@@ -14,15 +14,7 @@ const reducer = (state = page3Data, action) => {
       return state;
   }
 };
-
 const store = createStore(reducer);
-
-store.subscribe(function () {
-  if (store.getState().color === "blue") {
-    const div = document.getElementById("component2");
-    div.style.background = "blue";
-  }
-});
 
 function Page3() {
   return (
@@ -38,10 +30,7 @@ function Page3() {
 
 function Component1(props) {
   function changeColor() {
-    const changeColorAction = {
-      type: "CHANGE_COLOR",
-    };
-    store.dispatch(changeColorAction);
+    store.dispatch({ type: "CHANGE_COLOR" });
   }
 
   return (
@@ -54,7 +43,7 @@ function Component1(props) {
 
 function Component2(props) {
   return (
-    <div id="component2">
+    <div style={{ backgroundColor: useSelector((state) => state.color) }}>
       <h3>Component2...</h3>
     </div>
   );
