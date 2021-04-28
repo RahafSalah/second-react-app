@@ -4,7 +4,8 @@ import { useFormik } from "formik";
 
 const validateLogin = (loginData) => {
   const errors = {};
-
+  var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-])(?=.{8,20})");
+  
   if (!loginData.email) {
     errors.email = "Please Enter Email";
   } else if (
@@ -15,8 +16,8 @@ const validateLogin = (loginData) => {
 
   if (!loginData.password || loginData.password.length === 0) {
     errors.password = "Please Enter Password";
-  } else if (loginData.password.length < 6) {
-    errors.password = "Password must contain at least 6 characters";
+  } else if (!strongRegex.test(loginData.password)) {
+    errors.password = "Password must be 8-20 characters with at least one number, uppercase letter, lowercase letter, and one special character";
   }
   return errors;
 };
