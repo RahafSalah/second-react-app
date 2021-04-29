@@ -1,5 +1,6 @@
 import "./App.css";
 import LoginPage from "./LoginPage"
+import LoginForm from "./redux-loginpage"
 import Page1 from "./Page1";
 import Page2 from "./Page2";
 import Page3 from "./Page3";
@@ -10,6 +11,7 @@ function App() {
     <BrowserRouter>
       <Switch> 
         <Route path="/loginpage" exact component={LoginPage}></Route>
+        <Route path="/redux-loginpage" exact component={LoginForm}></Route>
         <Route path="/page1" exact component={Page1}></Route>
         <Route path="/page2" exact component={Page2}></Route>
         <Route path="/page3" exact component={Page3}></Route>
@@ -24,6 +26,9 @@ function Menu(){
       <ul>
         <li>
           <Link to="/loginpage">Login Page</Link>
+        </li>
+        <li>
+          <Link to="/redux-loginpage">Login Page2</Link>
         </li>
         <li>
           <Link to="/page1">Page1</Link>
